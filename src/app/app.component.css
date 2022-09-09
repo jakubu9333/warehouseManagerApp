@@ -1,4 +1,11 @@
 .grid-container {
-    display: grid;
-    
-  }
+  display: grid;
+}
+
+.grid-container.two_columns {
+  grid-template-columns: auto 20px;
+}
+
+.grid-container.two_big_columns {
+  grid-template-columns: auto auto;
+}

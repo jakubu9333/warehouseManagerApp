@@ -1,3 +1,24 @@
-<div class="grid-container" [style.grid-template-columns]=column_string>
-    <button *ngFor="let lo of numbers(warehouse.maxRow*warehouse.maxColumn),let i=index">{{i+1}}</button>
+<div class="grid-container two_big_columns">
+  <button (click)="expand_row()">add row</button>
+  <button (click)="shrink_row()">delete row</button>
 </div>
+
+
+<div class="grid-container two_columns">
+  <div class="grid-container" [style.grid-template-columns]="column_string">
+    <button
+      *ngFor="
+        let lo of numbers(warehouse.maxRow * warehouse.maxColumn);
+        let i = index
+      "
+    >
+      {{ floor(i / warehouse.maxColumn) + 1 }},
+      {{ (i % warehouse.maxColumn) + 1 }}
+    </button>
+  </div>
+  <div>
+    <button (click)="expand_col()">+</button>
+    <button (click)="shrink_col()">-</button>
+  </div>
+</div>
+

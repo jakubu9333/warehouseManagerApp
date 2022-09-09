@@ -19,15 +19,50 @@ export class WarehouseService {
   }
 
   public createWarehouse(): Observable<Warehouse> {
-    return this.http.post<Warehouse>(`${this.apiServeUrl}/create`,0);
+    return this.http.post<Warehouse>(`${this.apiServeUrl}/create`, 0);
   }
 
-  public expandWarehouse(id:number,col:number,floor:number,row:number): Observable<Warehouse> {
-    let params = new HttpParams().set('col', col);
-    params=params.append('row',row)
-    params=params.append('floor',floor)
-    return this.http.put<Warehouse>(`${this.apiServeUrl}/expand/${id}`,{params:params});
+  public expandWarehouse(
+    id: number,
+    col?: boolean,
+    floor?: boolean,
+    row?: boolean
+  ): Observable<Warehouse> {
+    let params = new HttpParams();
+    if (col != undefined) {
+      params = params.append('col', col);
+    }
+    if (row != undefined) {
+      params = params.append('row', row);
+    }
+
+    if (floor != undefined) {
+      params = params.append('floor', floor);
+    }
+    return this.http.put<Warehouse>(`${this.apiServeUrl}/expand/${id}`,0, {
+      params});
   }
 
+  public shrinkWarehouse(
+    id: number,
+    col?: boolean,
+    floor?: boolean,
+    row?: boolean
+  ): Observable<Warehouse> {
+    let params = new HttpParams();
+    if (col != undefined) {
+      params = params.append('col', col);
+    }
+    if (row != undefined) {
+      params = params.append('row', row);
+    }
 
+    if (floor != undefined) {
+      params = params.append('floor', floor);
+    }
+
+    return this.http.put<Warehouse>(`${this.apiServeUrl}/shrink/${id}`,0, {
+      params: params,
+    });
+  }
 }
