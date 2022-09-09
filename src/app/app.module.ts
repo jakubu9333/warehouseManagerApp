@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductService } from './product.service';
 import { WarehouseService } from './warehouse.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule,MatGridListModule],
   providers: [WarehouseService, ProductService],
   bootstrap: [AppComponent],
 })

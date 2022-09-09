@@ -9,3 +9,18 @@
 .grid-container.two_big_columns {
   grid-template-columns: auto auto;
 }
+
+.coordinates{
+  background-color: orange;
+
+}
+
+.coordinates.fixed{
+  position:fixed;
+
+}
+
+.not-fixed{
+  overflow-x: hidden;
+                overflow-y: auto;
+}
