@@ -6,17 +6,16 @@ import { ProductService } from '../product.service';
 import { Warehouse } from './warehouse';
 import { WarehouseService } from './warehouse.service';
 
-
 @Component({
   selector: 'app-warehouse',
   templateUrl: './warehouse.component.html',
-  styleUrls: ['./warehouse.component.css']
+  styleUrls: ['./warehouse.component.css'],
 })
 export class WarehouseComponent implements OnInit {
-  row=0
-  col=0
+  row = 0;
+  col = 0;
   id = 1;
-  xd:string|null
+  xd: string | null;
   public warehouse: Warehouse;
   public products: Product[];
   constructor(
@@ -25,26 +24,23 @@ export class WarehouseComponent implements OnInit {
     private warehouseService: WarehouseService
   ) {}
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      console.log(params)
+    this.route.queryParams.subscribe((params) => {
+      this.id = params['id'];
+      this.getWarehouse();
     });
-  
-    this.warehouse={id:this.id,maxColumn:0,maxRow:0,maxFloor:0}
+    this.warehouse = { id: this.id, maxColumn: 0, maxRow: 0, maxFloor: 0 };
     this.getProducts();
-    this.getWarehouse();
   }
 
-  showCoordinates(index:number){
-    
-      this.row=Math.floor(index/this.warehouse.maxColumn)+1
-      this.col=index%this.warehouse.maxColumn+1
+  showCoordinates(index: number) {
+    this.row = Math.floor(index / this.warehouse.maxColumn) + 1;
+    this.col = (index % this.warehouse.maxColumn) + 1;
   }
-  hiden(){
-    if (this.row==0||this.col==0){
-        return "hidden"
+  hiden() {
+    if (this.row == 0 || this.col == 0) {
+      return 'hidden';
     }
-    return "visible"
-
+    return 'visible';
   }
 
   expand_row(): void {
@@ -107,6 +103,9 @@ export class WarehouseComponent implements OnInit {
   }
 
   public getWarehouse(): void {
+    if (this.id==undefined){
+      return
+    }
     this.warehouseService.getWarehouse(this.id).subscribe({
       next: (response: Warehouse) => {
         this.warehouse = response;
@@ -117,8 +116,8 @@ export class WarehouseComponent implements OnInit {
     });
   }
   numbers(number?: number) {
-    if (number==undefined||number<0){
-      number=1
+    if (number == undefined || number < 0) {
+      number = 1;
     }
     return Array(number);
   }
@@ -127,12 +126,10 @@ export class WarehouseComponent implements OnInit {
     return Math.floor(number);
   }
 
-  maxWidth(){
-    if (this.warehouse.maxColumn<=3){
-      return 25*this.warehouse.maxColumn+"%"
+  maxWidth() {
+    if (this.warehouse.maxColumn <= 3) {
+      return 25 * this.warehouse.maxColumn + '%';
     }
-    return 100+"%"
+    return 100 + '%';
   }
-
-
 }
