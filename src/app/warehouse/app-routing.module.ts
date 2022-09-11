@@ -5,6 +5,7 @@ import { WarehouseComponent } from './warehouse/warehouse.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/warehouses', pathMatch: 'full' },
+  { path: 'xd/:id', component: WarehouseComponent },
   { path: 'warehouses', component: WarehouseComponent },
 ];
 

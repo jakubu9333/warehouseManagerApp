@@ -1,0 +1,50 @@
+<h1>{{xd}}</h1>
+
+<div>
+  <h2>
+    Number of rows: {{ warehouse.maxRow }} Number of cols:
+    {{ warehouse.maxColumn }}
+  </h2>
+  <h3 [style.visibility]="hiden()">Row: {{ row }} Col: {{ col }}</h3>
+  <div class="grid-container two_big_columns">
+    <button mat-raised-button color="primary" (click)="expand_row()">
+      add row
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="warehouse.maxRow > 0"
+      (click)="shrink_row()"
+    >
+      delete row
+    </button>
+  </div>
+
+  <div class="grid-container two_columns">
+    <div [style.maxWidth]="maxWidth()">
+      <mat-grid-list [cols]="warehouse.maxColumn">
+        <mat-grid-tile
+          class="not-that-big"
+          style="background-color: orange"
+          *ngFor="
+            let lo of numbers(warehouse.maxRow * warehouse.maxColumn);
+            let i = index
+          "
+          (mouseenter)="showCoordinates(i)"
+        >
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    <div>
+      <button mat-mini-fab color="primary" (click)="expand_col()">+</button>
+      <button
+        mat-mini-fab
+        color="primary"
+        *ngIf="warehouse.maxColumn > 0"
+        (click)="shrink_col()"
+      >
+        -
+      </button>
+    </div>
+  </div>
+</div>

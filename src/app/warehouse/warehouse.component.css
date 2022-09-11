@@ -1,0 +1,22 @@
+.grid-container {
+    display: grid;
+  }
+  
+  .grid-container.two_columns {
+    grid-template-columns: auto 20px 20px;
+  }
+  
+  .grid-container.two_big_columns {
+    grid-template-columns: auto auto;
+  }
+  
+  .row-changers{
+    width: 1px;
+  }
+  body{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+  }
+  
