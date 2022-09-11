@@ -8,10 +8,11 @@ import { ProductService } from './product.service';
 import { WarehouseService } from './warehouse.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule,MatGridListModule],
+  imports: [MatButtonModule,BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule,MatGridListModule],
   providers: [WarehouseService, ProductService],
   bootstrap: [AppComponent],
 })

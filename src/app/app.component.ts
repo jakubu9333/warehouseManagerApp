@@ -12,6 +12,8 @@ import { WarehouseService } from './warehouse.service';
 })
 export class AppComponent implements OnInit {
   title = 'warehouseManagerApp';
+  row=0
+  col=0
   id = 1;
   public warehouse: Warehouse;
   public products: Product[];
@@ -20,11 +22,25 @@ export class AppComponent implements OnInit {
     private warehouseService: WarehouseService
   ) {}
   ngOnInit(): void {
+    this.warehouse={id:this.id,maxColumn:0,maxRow:0,maxFloor:0}
     this.getProducts();
     this.getWarehouse();
   }
+
+  showCoordinates(index:number){
+    
+      this.row=Math.floor(index/this.warehouse.maxColumn)+1
+      this.col=index%this.warehouse.maxColumn+1
+  }
+  hiden(){
+    if (this.row==0||this.col==0){
+        return "hidden"
+    }
+    return "visible"
+
+  }
+
   expand_row(): void {
-    let r = true;
     this.warehouseService
       .expandWarehouse(this.id, undefined, undefined, true)
       .subscribe({

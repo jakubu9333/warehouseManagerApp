@@ -1,30 +1,33 @@
+<div color="secondary"><h2>
+  Number of rows: {{ warehouse.maxRow }} Number of cols:
+  {{ warehouse.maxColumn }}
+</h2>
+<h3 [style.visibility]="hiden()">Row: {{ row }} Col: {{ col }}</h3>
 <div class="grid-container two_big_columns">
-  <button (click)="expand_row()">add row</button>
-  <button *ngIf="warehouse.maxRow>0" (click)="shrink_row()">delete row</button>
+  <button mat-raised-button color="primary" (click)="expand_row()">add row</button>
+  <button mat-raised-button color="primary" *ngIf="warehouse.maxRow > 0" (click)="shrink_row()">
+    delete row
+  </button>
 </div>
 
 <div class="grid-container two_columns">
-  <mat-grid-list [cols]="warehouse.maxColumn">
-    <mat-grid-tile 
-      *ngFor="let lo of numbers(warehouse?.maxColumn); let i = index"
-      class="coordinates">
-      {{ (i % warehouse.maxColumn) + 1 }}
-    </mat-grid-tile>
-    
-  </mat-grid-list>
-  <div>
-    <button (click)="expand_col()">+</button>
-    <button *ngIf="warehouse.maxColumn>0"(click)="shrink_col()">-</button>
-  </div>
   <mat-grid-list [cols]="warehouse.maxColumn" class="not-fixed">
     <mat-grid-tile
+      style="background-color: orange"
       *ngFor="
         let lo of numbers(warehouse.maxRow * warehouse.maxColumn);
         let i = index
       "
+      (mouseenter)="showCoordinates(i)"
     >
-      {{ floor(i / warehouse.maxColumn) + 1 }}
+      {{ i }}
     </mat-grid-tile>
   </mat-grid-list>
-  
+  <div>
+    <button mat-mini-fab color="primary" (click)="expand_col()">+</button>
+    <button mat-mini-fab color="primary" *ngIf="warehouse.maxColumn > 0" (click)="shrink_col()">
+      -
+    </button>
+  </div>
+</div>
 </div>

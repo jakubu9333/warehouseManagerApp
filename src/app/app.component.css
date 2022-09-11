@@ -3,24 +3,23 @@
 }
 
 .grid-container.two_columns {
-  grid-template-columns: auto 20px;
+  grid-template-columns: auto 20px 20px;
 }
 
 .grid-container.two_big_columns {
   grid-template-columns: auto auto;
 }
 
-.coordinates{
-  background-color: orange;
-
+.row-changers{
+  width: 1px;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
 }
 
-.coordinates.fixed{
-  position:fixed;
 
-}
 
-.not-fixed{
-  overflow-x: hidden;
-                overflow-y: auto;
-}
+
